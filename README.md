@@ -16,4 +16,4 @@ E-learning在线学习平台较网络学习平台更贴近校园开设的课程�
 * 视频播放
 * 作业提交、审核
 * ...
-## 客户端：Android、Window、Linux、Mac OS、Web
+## 支持平台：Android、Windows、Linux、Mac OS、Web
