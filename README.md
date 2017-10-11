@@ -1,4 +1,8 @@
 # 校园在线学习平台E-learning
+
+[![Conda](https://img.shields.io/badge/platform-Android%20%7C%20linux--64%20%7C%20win--64%20%7C%20osx--64%20%7C%20Web-lightgrey.svg)]()
+[![Hex.pm](https://img.shields.io/hexpm/l/plug.svg)]()
+
 ## 概要
 E-learning是由东软在校学生开发的一款面向在校大学生的在线学习平台，旨在帮助学生利用空余时间巩固课程内容，获取老师提供的课外资料，扩展自身知识储备量，从而顺应当下互联网高速发展的潮流。
 ## 为什么要用E-learning？
@@ -16,4 +20,4 @@ E-learning在线学习平台较网络学习平台更贴近校园开设的课程�
 * 视频播放
 * 作业提交、审核
 * ...
-## 支持平台：Android、Windows、Linux、Mac OS、Web
+
