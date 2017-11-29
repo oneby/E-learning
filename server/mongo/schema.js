@@ -4,7 +4,8 @@ var bcrypt = require('bcrypt')
 var UserDataSchema = new Schema({
     name: String,
     password: String,
-    email: String
+    email: String,
+    role: String
 })
 UserDataSchema.methods = {
     comparePassword: function(_userPassword, callback) {
@@ -16,4 +17,4 @@ UserDataSchema.methods = {
         })
     }
 }
-module.exports = UserDataSchema
+module.exports = UserDataSchemas
