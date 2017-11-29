@@ -4,10 +4,12 @@ const cookieParser = require('cookie-parser')
 const mongoose = require('mongoose')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
-const routers = require('./router')
 const http = require('http');
 const debug = require('debug')('server1:server');
-const api = require('./router')
+const uuid = require('uuid/v4')
+
+const user_api = require('./router/users')
+const file_api = require('./router/files')
 
 
 const app = express()
@@ -46,7 +48,8 @@ app.use(session({
 
 // module.exports = app
 
-app.use('/api', api);
+app.use('/user', user_api)
+app.use('/file', file_api)
 
 // 设置请求头与跨域
 app.all('*', function(req, res, next) {
