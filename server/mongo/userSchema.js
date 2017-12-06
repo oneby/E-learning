@@ -7,6 +7,7 @@ var UserDataSchema = new Schema({
     email: String,
     role: String
 })
+
 UserDataSchema.methods = {
     comparePassword: function(_userPassword, callback) {
         bcrypt.compare(_userPassword, this.password, (err, isMatch) => {

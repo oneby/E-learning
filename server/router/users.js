@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const UserDataModel = require('../mongo/model')
+const UserDataModel = require('../mongo/userModel')
 const bcrypt = require('bcrypt')
 
 const SALT_WORK_FACTOR = 10

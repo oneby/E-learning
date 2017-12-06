@@ -1,5 +1,5 @@
 var mongoose = require('mongoose')
-var UserDataSchema = require('./schema')
+var UserDataSchema = require('./userSchema')
 
 
 mongoose.model('UserDataModel', UserDataSchema)
