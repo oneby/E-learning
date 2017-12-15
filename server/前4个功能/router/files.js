@@ -3,12 +3,21 @@ const router = express.Router()
 const multer = require('multer')({ dest: './uploads/' });
 const path = require('path');
 const fs = require('fs');
+const FileModel = require('../mongo/model/fileModel')
+
 
 router.post('/upload', multer.single('test-upload'), (req, res) => {
+    if (!req.session.isLogin) {
+        res.send({
+            code: -1,
+            msg: '请登录！'
+        })
+    }
+
     // 没有附带文件
     if (!req.file) {
         res.send({
-            code: -1,
+            code: -2,
             msg: "无文件"
         });
         return;
@@ -40,10 +49,37 @@ router.post('/upload', multer.single('test-upload'), (req, res) => {
             res.send({
                 code: 1,
                 name: req.file.fieldname,
+                path: newPath,
                 msg: "上传成功"
             });
         }
     });
+
+
+    FileModel.findOne({ fileName: fileName }, (err, fileInfo) => {
+        if (err) {
+            console.log(err)
+        }
+        if (fileInfo) {
+            res.send({
+                code: -3,
+                msg: '文件名称已存在'
+            })
+            return console.log('文件名称已存在')
+        }
+
+        // 创建 model
+        let _FileData = new UserDataModel({
+            from: 'test',
+            name: fileName,
+
+        });
+    })
+
+
+
+
+
 });
 
 //导出对象

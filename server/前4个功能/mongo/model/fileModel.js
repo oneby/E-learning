@@ -1,5 +1,5 @@
 var mongoose = require('mongoose')
-var fileDataSchema = require('./fileSchema')
+var fileDataSchema = require('./../schema/fileSchema')
 
 
 mongoose.model('FileDataModel', fileDataSchema)
