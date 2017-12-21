@@ -22,6 +22,7 @@ router.post('/login', (req, res) => {
             })
             return console.log('用户不存在！')
         }
+
         // 密码匹配
         userInfo.comparePassword(loginPsd, (err, isMatch) => {
             if (err) {
@@ -33,11 +34,13 @@ router.post('/login', (req, res) => {
                 req.session.isLogin = true
                     // 将用户信息存在 session 中
                 req.session.userInfo = {
-                        userName: userInfo.name,
-                        userEmail: userInfo.email,
-                        userRole: userInfo.role
-                    }
-                    // 成功返回
+                    userId: userInfo._id,
+                    userName: userInfo.name,
+                    userEmail: userInfo.email,
+                    userRole: userInfo.role
+                }
+
+                // 成功返回
                 res.send({
                     code: 0,
                     name: userInfo.name,
@@ -90,7 +93,6 @@ router.post('/typein', (req, res) => {
         const t_role = req.session.userInfo.role
             // 管理员
         if (t_role >= 50) {
-            console.log(req.body);
             // 从请求中拿到数据
             const { typeinName, typeinEmail, typeinPassword, typeinRole } = req.body
                 // 从 user 表查询

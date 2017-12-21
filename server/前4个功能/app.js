@@ -13,6 +13,7 @@ const file_api = require('./router/files')
 
 const app = express()
 
+
 // 连接数据库
 const dbUrl = 'mongodb://localhost:27017/e-learning'
 const db = mongoose.connect(dbUrl, { useMongoClient: true })
@@ -25,6 +26,7 @@ db.once("open", function() {
 })
 
 // 设置请求头与跨域
+
 app.all('*', function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
@@ -55,16 +57,9 @@ app.use(session({
     })
 }));
 
-// // 路由设置
-// routers(app);
-
-// module.exports = app
 
 app.use('/user', user_api)
 app.use('/file', file_api)
-
-
-
 
 
 // 路由设置

@@ -1,11 +1,12 @@
 var mongoose = require('mongoose')
 var Schema = mongoose.Schema
+var ObjectId = Schema.Types.ObjectId;
 
 var FileDataSchema = new Schema({
     from: { type: ObjectId, ref: 'UserDataModel' },
     fileName: String,
     filePath: String,
-    fileSize: Int32,
+    fileSize: String,
     meta: {
         createAt: {
             type: Date,

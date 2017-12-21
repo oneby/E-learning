@@ -10,7 +10,13 @@
 </head>
 
 <body>
-    <input type="file" name="file" id="file" />
+    <form action="http://127.0.0.1:3000/user/login" method="post">
+        name: <input type="text" name="loginEmail" id="loginEmail"> pwd: <input type="text" name="loginPsd" id="loginPsd">
+        <input type="submit" value="submit">
+    </form>
+
+
+    <input type="file" name="file" id="file" multiple />
     <button id="upload">上传</button>
     <span id="progress">0%</span>
     <img id="image" src="" width="200" />
@@ -64,5 +70,6 @@
         })();
     </script>
 </body>
+<style></style>
 
 </html>
