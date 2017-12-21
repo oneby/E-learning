@@ -128,6 +128,84 @@ router.post('/upload', cpUpload, (req, res) => {
     }
 });
 
+// 上传用户删除自己的文件
+router.delete('/delete/:fileid', (req, res) => {
+    const { fileid } = req.params;
+
+    // 查询数据库中单条数据
+    FileModel.findOne({ _id: fileid }, (err, fileResult) => {
+        if (err) {
+            console.log(err)
+            res.send({
+                code: -1,
+                msg: '文件查询失败'
+            })
+        }
+        if (fileResult === null) {
+            res.send({
+                code: -2,
+                msg: '文件无数据'
+            })
+        } else {
+            // 删除数据库中单条数据
+            FileModel.remove({ _id: fileid }, err => {
+                if (err) {
+                    console.log(err)
+                    res.send({
+                        code: -3,
+                        msg: '数据库文件删除失败'
+                    })
+                }
+                // 删除本地文件
+                fs.unlink(fileResult.filePath, err => {
+                    if (err) {
+                        res.send({
+                            code: -4,
+                            msg: '本地文件查询失败'
+                        })
+                    } else {
+                        res.send({
+                            code: 1,
+                            msg: '删除成功'
+                        })
+                    }
+                })
+            })
+        }
+    })
+})
+
+
+// 文件下载
+router.get('/download/:fileid', (req, res) => {
+    const { fileid } = req.params;
+    FileModel.findOne({ _id: id }, (err, fileResult) => {
+        if (err) {
+            console.log(err)
+            res.send({
+                code: -1,
+                msg: '文件查询失败'
+            })
+        }
+        if (fileResult === null) {
+            res.send({
+                code: -2,
+                msg: '文件无数据'
+            })
+        } else {
+            res.download(fileResult.filePath, err => {
+                if (err) {
+                    res.send({
+                        code: -3,
+                        msg: '文件下载失败'
+                    })
+                }
+            })
+
+        }
+    })
+});
+
 // 查找所有已上传文件
 router.get('/alldata', (req, res) => {
 
@@ -160,8 +238,8 @@ router.get('/alldata', (req, res) => {
 })
 
 // 查找单个文件
-router.post('/detail', (req, res) => {
-    const { fileId } = req.body
+router.get('/detail/:fileid', (req, res) => {
+    const { fileId } = req.params
 
     // 查找数据库中单条文件数据
     FileModel.findOne({ _id: fileId }, (err, fileResult) => {
@@ -211,8 +289,6 @@ router.post('/detail', (req, res) => {
         }
     })
 })
-
-
 
 
 module.exports = router;
