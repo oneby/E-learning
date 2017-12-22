@@ -9,15 +9,15 @@ const SALT_WORK_FACTOR = 10
 // 用户登录
 router.post('/login', (req, res) => {
     // 从请求中拿到数据
-    const { loginEmail, loginPsd } = req.body
-        // 通过 loginEmail 查询 user 表, 返回 userInfo
-    UserDataModel.findOne({ email: loginEmail }, (err, userInfo) => {
+    const { loginNum, loginPsd } = req.body
+        // 通过 loginNum 查询 user 表, 返回 userInfo
+    UserDataModel.findOne({ accountnum: loginNum }, (err, userInfo) => {
         if (err) {
             console.log(err)
         }
         if (!userInfo) {
             res.send({
-                code: -1,
+                status: false,
                 msg: '用户不存在'
             })
             return console.log('用户不存在！')
@@ -36,22 +36,22 @@ router.post('/login', (req, res) => {
                 req.session.userInfo = {
                     userId: userInfo._id,
                     userName: userInfo.name,
-                    userEmail: userInfo.email,
+                    userEmail: userInfo.accountnum,
                     userRole: userInfo.role
                 }
 
                 // 成功返回
                 res.send({
-                    code: 0,
+                    status: true,
                     name: userInfo.name,
-                    email: userInfo.email,
+                    accountnum: userInfo.accountnum,
                     role: userInfo.role,
                     msg: '登录成功！'
                 })
             } else {
                 // 错误返回
                 res.send({
-                    code: -2,
+                    status: false,
                     msg: '密码错误'
                 })
             }
@@ -63,7 +63,7 @@ router.post('/login', (req, res) => {
 router.post('/signout', (req, res) => {
     req.session.isLogin = false
     res.send({
-        code: 0,
+        status: true,
         msg: '登出成功！'
     })
 });
@@ -72,13 +72,13 @@ router.post('/signout', (req, res) => {
 router.get('/getUserName', (req, res) => {
     if (req.session.isLogin) {
         res.send({
-            code: 0,
+            status: true,
             role: req.session.userInfo.role,
             userName: req.session.userInfo.userName
         })
     } else {
         res.send({
-            code: -1,
+            status: false,
             msg: '请登录！'
         })
     }
@@ -94,9 +94,9 @@ router.post('/typein', (req, res) => {
             // 管理员
         if (t_role >= 50) {
             // 从请求中拿到数据
-            const { typeinName, typeinEmail, typeinPassword, typeinRole } = req.body
+            const { typeinName, typeinAccount, typeinPassword, typeinRole } = req.body
                 // 从 user 表查询
-            UserDataModel.findOne({ email: typeinEmail }, (err, userInfo) => {
+            UserDataModel.findOne({ accountnum: typeinAccount }, (err, userInfo) => {
                 if (err) {
                     console.log(err)
                 }
@@ -104,7 +104,7 @@ router.post('/typein', (req, res) => {
                 if (userInfo) {
                     // 返回
                     res.send({
-                        code: -1,
+                        status: false,
                         msg: '用户已存在'
                     })
                     return console.log('用户已存在！')
@@ -112,7 +112,7 @@ router.post('/typein', (req, res) => {
                 // 创建 model
                 let _userData = new UserDataModel({
                     name: typeinName,
-                    email: typeinEmail,
+                    accountnum: typeinAccount,
                     password: typeinPassword,
                     role: typeinRole
                 });
@@ -134,15 +134,15 @@ router.post('/typein', (req, res) => {
                                 console.log(err)
                                     // 返回
                                 res.send({
-                                    code: -1,
-                                    msg: 'Something error!'
+                                    status: false,
+                                    msg: '数据库保存失败'
                                 })
                             }
                             // 返回录入信息
                             res.send({
-                                code: 0,
+                                status: true,
                                 name: typeinName,
-                                email: typeinEmail,
+                                accountnum: typeinAccount,
                                 role: typeinRole,
                                 msg: '录入成功'
                             })
@@ -153,13 +153,13 @@ router.post('/typein', (req, res) => {
 
         } else {
             res.send({
-                code: -2,
+                status: false,
                 msg: '权限不足'
             })
         }
     } else {
         res.send({
-            code: -3,
+            status: false,
             msg: '请登录！'
         })
     }

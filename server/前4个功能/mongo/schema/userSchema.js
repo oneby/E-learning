@@ -4,7 +4,7 @@ var bcrypt = require('bcrypt')
 var UserDataSchema = new Schema({
     name: String,
     password: String,
-    email: String,
+    accountnum: String,
     role: String
 })
 

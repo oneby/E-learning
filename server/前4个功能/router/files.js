@@ -24,7 +24,7 @@ router.post('/upload', cpUpload, (req, res) => {
 
     if (!req.session.isLogin) {
         res.send({
-            code: -1,
+            status: false,
             msg: '请登录！'
         })
     } else {
@@ -34,7 +34,7 @@ router.post('/upload', cpUpload, (req, res) => {
          */
         if (req.session.userInfo.userRole < 50) {
             res.send({
-                code: '-2',
+                status: false,
                 msg: '用户权限不足'
             })
         } else {
@@ -45,7 +45,7 @@ router.post('/upload', cpUpload, (req, res) => {
              */
             if (!req.files) {
                 res.send({
-                    code: -3,
+                    status: false,
                     msg: "无文件"
                 });
             } else {
@@ -76,8 +76,8 @@ router.post('/upload', cpUpload, (req, res) => {
                     fs.rename(oldPath, newPath, (err) => {
                         if (err) {
                             res.send({
-                                code: -4,
-                                msg: "something wrong"
+                                status: false,
+                                msg: "重命名时发生错误"
                             });
                             console.log(err);
                         } else {
@@ -103,8 +103,8 @@ router.post('/upload', cpUpload, (req, res) => {
                                 if (err) {
                                     console.log(err)
                                     res.send({
-                                        code: -6,
-                                        msg: 'Something error!'
+                                        status: false,
+                                        msg: '数据库错误'
                                     })
                                 }
                                 /**
@@ -113,7 +113,7 @@ router.post('/upload', cpUpload, (req, res) => {
                                  * fromId    上传用户 ID
                                  */
                                 res.send({
-                                    code: 1,
+                                    status: true,
                                     fileId: results._id,
                                     fileName: uploadFile.fieldname,
                                     fromId: results.from,
@@ -137,13 +137,13 @@ router.delete('/delete/:fileid', (req, res) => {
         if (err) {
             console.log(err)
             res.send({
-                code: -1,
+                status: false,
                 msg: '文件查询失败'
             })
         }
         if (fileResult === null) {
             res.send({
-                code: -2,
+                status: false,
                 msg: '文件无数据'
             })
         } else {
@@ -152,7 +152,7 @@ router.delete('/delete/:fileid', (req, res) => {
                 if (err) {
                     console.log(err)
                     res.send({
-                        code: -3,
+                        status: false,
                         msg: '数据库文件删除失败'
                     })
                 }
@@ -160,12 +160,12 @@ router.delete('/delete/:fileid', (req, res) => {
                 fs.unlink(fileResult.filePath, err => {
                     if (err) {
                         res.send({
-                            code: -4,
+                            status: false,
                             msg: '本地文件查询失败'
                         })
                     } else {
                         res.send({
-                            code: 1,
+                            status: true,
                             msg: '删除成功'
                         })
                     }
@@ -183,20 +183,20 @@ router.get('/download/:fileid', (req, res) => {
         if (err) {
             console.log(err)
             res.send({
-                code: -1,
+                status: false,
                 msg: '文件查询失败'
             })
         }
         if (fileResult === null) {
             res.send({
-                code: -2,
+                status: false,
                 msg: '文件无数据'
             })
         } else {
             res.download(fileResult.filePath, err => {
                 if (err) {
                     res.send({
-                        code: -3,
+                        status: false,
                         msg: '文件下载失败'
                     })
                 }
@@ -214,13 +214,13 @@ router.get('/alldata', (req, res) => {
         if (err) {
             console.log(err)
             res.send({
-                code: -1,
+                status: false,
                 msg: '文件数据查询失败'
             })
         }
         if (results === null) {
             res.send({
-                code: -2,
+                status: false,
                 msg: '文件无数据'
             })
         } else {
@@ -228,7 +228,7 @@ router.get('/alldata', (req, res) => {
              * allFile 返回所有数据
              */
             res.send({
-                code: 1,
+                status: true,
                 allFile: results
             })
 
@@ -239,20 +239,20 @@ router.get('/alldata', (req, res) => {
 
 // 查找单个文件
 router.get('/detail/:fileid', (req, res) => {
-    const { fileId } = req.params
+    const { fileid } = req.params
 
     // 查找数据库中单条文件数据
-    FileModel.findOne({ _id: fileId }, (err, fileResult) => {
+    FileModel.findOne({ _id: fileid }, (err, fileResult) => {
         if (err) {
             console.log(err)
             res.send({
-                code: -1,
+                status: false,
                 msg: '文件查询失败'
             })
         }
         if (fileResult === null) {
             res.send({
-                code: -2,
+                status: false,
                 msg: '文件无数据'
             })
         } else {
@@ -261,13 +261,13 @@ router.get('/detail/:fileid', (req, res) => {
                 if (err) {
                     console.log(err)
                     res.send({
-                        code: -1,
+                        status: false,
                         msg: '用户查询失败'
                     })
                 }
                 if (userResult === null) {
                     res.send({
-                        code: -2,
+                        status: false,
                         msg: '用户无数据'
                     })
                 } else {
@@ -278,7 +278,7 @@ router.get('/detail/:fileid', (req, res) => {
                      * date       文件上传日期
                      */
                     res.send({
-                        code: 1,
+                        status: true,
                         fromName: userResult.name,
                         fileName: fileResult.fileName,
                         fileSize: fileResult.fileSize,
