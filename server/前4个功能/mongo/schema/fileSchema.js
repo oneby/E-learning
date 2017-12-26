@@ -7,6 +7,7 @@ var FileDataSchema = new Schema({
     fileName: String,
     filePath: String,
     fileSize: String,
+    mimetype: String,
     meta: {
         createAt: {
             type: Date,

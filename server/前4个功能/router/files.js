@@ -95,7 +95,8 @@ router.post('/upload', cpUpload, (req, res) => {
                                 from: req.session.userInfo.userId,
                                 fileName: newName,
                                 filePath: newPath,
-                                fileSize: (uploadFile.size / 1024).toFixed(2) + 'KB'
+                                fileSize: (uploadFile.size / 1024).toFixed(2) + 'KB',
+                                mimetype: uploadFile.mimetype
                             });
 
                             // 保存数据库
@@ -231,8 +232,6 @@ router.get('/alldata', (req, res) => {
                 status: true,
                 allFile: results
             })
-
-
         }
     })
 })
