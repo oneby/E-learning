@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.e_learning.LoginActivity">
+
+    <EditText
+        android:id="@+id/number"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_margin="5dp"
+        android:layout_gravity="center"
+        android:drawableLeft="@drawable/phonepic"
+        android:drawablePadding="10dp"
+        android:background="@drawable/bg_edittext"
+        android:padding="10dp"
+        android:hint="学号"
+        android:textSize="20dp"
+        android:singleLine="true"/>
+
+    <EditText
+        android:id="@+id/password"
+        android:password="true"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_margin="5dp"
+        android:layout_gravity="center"
+        android:drawableLeft="@drawable/passpic"
+        android:drawablePadding="10dp"
+        android:background="@drawable/bg_edittext"
+        android:padding="10dp"
+        android:hint="密码"
+        android:textSize="20dp"
+        android:singleLine="true"/>
+
+    <Button
+        android:id="@+id/loginBtn"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_margin="5dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="登录"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/bg_button_login"/>
+
+
+    <TextView
+        android:id="@+id/forget"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="30dp"
+        android:text="忘记密码"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="40dp"
+        android:paddingLeft="60dp"
+        android:paddingRight="60dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_weight="1"
+            android:background="#728ea3"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text=" 其他方式登录 "/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_weight="1"
+            android:background="#728ea3"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:paddingLeft="60dp"
+        android:paddingRight="60dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/wechat"
+            android:src="@drawable/wechat"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/qq"
+            android:src="@drawable/qq"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/boke"
+            android:src="@drawable/boke"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+</LinearLayout>

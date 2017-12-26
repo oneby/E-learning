@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--欢迎界面的布局文件-->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--使用自定义tools工具包下的CustVideoView实现满屏播放-->
+    <tools.CustomVideoView
+        android:id="@+id/videoview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!--添加按钮实现点击进入登录页面-->
+    <tools.AnimationButton
+        android:id="@+id/btn_start"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="80dp"/>
+
+</RelativeLayout>

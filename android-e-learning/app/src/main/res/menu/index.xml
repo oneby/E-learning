@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.actionbartest.MainActivity">
+
+    <item
+        android:id="@+id/index_research"
+        android:icon="@drawable/research"
+        android:title="research"
+        app:actionViewClass="android.widget.SearchView"
+        app:showAsAction="ifRoom|collapseActionView"/>
+    <item
+        android:id="@+id/index_message"
+        android:icon="@drawable/message"
+        android:title="email"
+        app:showAsAction="always"/>
+
+</menu>
