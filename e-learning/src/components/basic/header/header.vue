@@ -36,7 +36,6 @@ export default {
 
 #header{
     height: 100px;
-    
     text-align: center;
     min-width: 800px;
 }
