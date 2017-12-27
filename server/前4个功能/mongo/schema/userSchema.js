@@ -1,7 +1,8 @@
-var mongoose = require('mongoose')
-var Schema = mongoose.Schema
-var bcrypt = require('bcrypt')
-var UserDataSchema = new Schema({
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
+const bcrypt = require('bcrypt')
+
+const UserDataSchema = new Schema({
     name: String,
     password: String,
     accountnum: String,

@@ -1,5 +1,5 @@
-var mongoose = require('mongoose')
-var fileDataSchema = require('./../schema/fileSchema')
+const mongoose = require('mongoose')
+const fileDataSchema = require('./../schema/fileSchema')
 
 
 mongoose.model('FileDataModel', fileDataSchema)

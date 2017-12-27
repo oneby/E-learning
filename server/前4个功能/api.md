@@ -86,7 +86,7 @@
         msg         | 是   | string  | 返回的信息
 
 
-    1. 登录成功返回的数据
+    1. 成功返回的数据
     ```json
     {
         "status": true,
@@ -95,10 +95,10 @@
     ```
 
 
-3. 查询用户名接口
+3. 根据 id 查询用户名
 	--------
 
-	- **接口地址 http://ip:port/user/getUserName**
+	- **接口地址 http://ip:port/user/getUserName/:userid**
 
     - **请求方法:GET**
 
@@ -106,7 +106,7 @@
 
         参数名称 | 必需 | 类型   | 描述
         ------------|------|--------|--------------
-        无
+        userid      | 是   | string | 用户 id
 
     - **响应参数**
 
@@ -114,23 +114,23 @@
         ------------|------|---------|----------------
         status      | 是   | boolean | 判断相应状态
         userName    | 是   | string  | 用户昵称
-        role        | 是   | string  | 用户权限
+        userrole    | 是   | string  | 用户权限
 
 
-    1. 登录成功返回的数据
+    1. 成功返回的数据
     ```json
     {
         "status": true,
         "userName": "admin",
-        "role": "100"
+        "userrole": "100"
     }
     ```
 
-    2. 登录失败返回的数据
+    2. 失败返回的数据
     ```json
     {
         "status": false,
-        "msg": "请登录！"
+        "msg": "无用户数据"
     }
     ```
 
@@ -162,7 +162,7 @@
         msg         | 是   | string  | 返回的信息        
 
 
-    1. 登录成功返回的数据
+    1. 成功返回的数据
     ```json
     {
         "status": true,
@@ -174,7 +174,7 @@
     }
     ```
 
-    2. 登录失败返回的数据
+    2. 失败返回的数据
     ```json
     {
         "status": false,
@@ -220,7 +220,7 @@
         msg         | 是   | string  | 返回的信息        
 
 
-    1. 登录成功返回的数据
+    1. 成功返回的数据
     ```json
     {
         "status": true,
@@ -232,7 +232,7 @@
     }
     ```
 
-    2. 登录失败返回的数据
+    2. 失败返回的数据
     ```json
     {
         "status": false,
@@ -279,7 +279,7 @@
         msg         | 是   | string  | 返回的信息        
 
 
-    1. 登录成功返回的数据
+    1. 成功返回的数据
     ```json
     {
         "status": true,
@@ -288,7 +288,7 @@
     }
     ```
 
-    2. 登录失败返回的数据
+    2. 失败返回的数据
     ```json
     {
         "status": false,
@@ -330,12 +330,12 @@
         无     
 
 
-    1. 登录成功返回的数据
+    1. 成功返回的数据
     ```json
     // 无返回,直接下载
     ```
 
-    2. 登录失败返回的数据
+    2. 失败返回的数据
     ```json
     {
         "status": false,
@@ -383,6 +383,8 @@
             fileName    | 是   | string | 文件名称    
             filePath    | 是   | string | 文件路径    
             fileSize    | 是   | string | 文件大小    
+            mimetype    | 是   | string | 文件格式    
+            imgPath     | 是   | string | 背景图路径    
             meta        | 是   | string | 时间对象    
             ___
             * meta
@@ -393,7 +395,7 @@
                 createAt    | 是   | string | 文件创建时间
 
 
-    1. 登录成功返回的数据
+    1. 成功返回的数据
     ```json
     {
         "status": true,
@@ -404,6 +406,8 @@
                 "fileName": "1513861952608Screenshot_2017-12-02-12-09-33-607_com.valvesoftw.png",
                 "filePath": "/Users/zhubotai/Documents/class/design_p/大项目/E-learning/server/前4个功能/uploads/1513861952608Screenshot_2017-12-02-12-09-33-607_com.valvesoftw.png",
                 "fileSize": "219.25KB",
+                "mimetype": "",
+                "imgPath": "",
                 "__v": 0,
                 "meta": {
                     "updateAt": "2017-12-21T13:12:32.609Z",
@@ -438,7 +442,7 @@
     }
     ```
 
-    2. 登录失败返回的数据
+    2. 失败返回的数据
     ```json
     {
         "status": false,
@@ -477,7 +481,7 @@
         
 
 
-    1. 登录成功返回的数据
+    1. 成功返回的数据
     ```json
     {
         "status": true,
@@ -488,7 +492,7 @@
     }
     ```
 
-    2. 登录失败返回的数据
+    2. 失败返回的数据
     ```json
     {
         "status": false,
@@ -505,5 +509,93 @@
     {
         "status": false,
         "msg": "用户无数据"
+    }
+    ```
+
+10. 发布评论
+	--------
+
+	- **接口地址 http://ip:port/comment/release**
+
+    - **请求方法: POST**
+
+    - **请求参数**
+
+        参数名称 | 必需 | 类型   | 描述
+        ----------|------|--------|--------------
+        fileid    | 是   | string | 文件 ID
+        comment   | 是   | string | 评论内容
+        
+
+    - **响应参数**
+
+        参数名称 | 必需 | 类型   | 描述
+        ------------|------|---------|----------------
+        status      | 是   | boolean | 判断状态信息
+        msg         | 是   | string  | 返回信息
+
+    1. 成功返回的数据
+    ```json
+    {
+        
+    }
+    ```
+
+    2. 失败返回的数据
+    ```json
+    {
+
+    }
+    ```
+
+11. 获取所有评论
+	--------
+
+	- **接口地址 http://ip:port/comment/results/:fileid**
+
+    - **请求方法: GET**
+
+    - **请求参数**
+
+        参数名称 | 必需 | 类型   | 描述
+        ----------|------|--------|--------------
+        fileid    | 是   | string | 文件 ID
+        
+
+    - **响应参数**
+
+        参数名称 | 必需 | 类型   | 描述
+        ------------|------|---------|----------------
+        status      | 是   | boolean | 判断状态信息
+        comment     | 是   | Object  | 评论信息
+        ___
+        * comment
+
+            参数名称 | 必需 | 类型   | 描述
+            ------------|------|---------|----------------
+            from    | 是   | string | 评论者 id   
+            to      | 是   | string | 被评论的视频 id
+            content | 是   | string | 评论内容
+            meta    | 是   | string | 评论时间
+            ___
+            * meta
+
+                参数名称 | 必需 | 类型   | 描述
+                ------------|------|---------|----------------
+                updateAt    | 是   | string | 更新时间   
+                createAt    | 是   | string | 创建时间
+
+
+    1. 成功返回的数据
+    ```json
+    {
+        
+    }
+    ```
+
+    2. 失败返回的数据
+    ```json
+    {
+
     }
     ```

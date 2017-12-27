@@ -10,6 +10,7 @@ const uuid = require('uuid/v4')
 
 const user_api = require('./router/users')
 const file_api = require('./router/files')
+const comment_api = require('./router/comments')
 
 const app = express()
 
@@ -60,6 +61,7 @@ app.use(session({
 
 app.use('/user', user_api)
 app.use('/file', file_api)
+app.use('/comment', comment_api)
 
 
 // 路由设置

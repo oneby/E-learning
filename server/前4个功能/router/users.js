@@ -68,22 +68,6 @@ router.post('/signout', (req, res) => {
     })
 });
 
-// 查询用户名
-router.get('/getUserName', (req, res) => {
-    if (req.session.isLogin) {
-        res.send({
-            status: true,
-            role: req.session.userInfo.role,
-            userName: req.session.userInfo.userName
-        })
-    } else {
-        res.send({
-            status: false,
-            msg: '请登录！'
-        })
-    }
-});
-
 // 录入用户
 router.post('/typein', (req, res) => {
     // 判断是否登录
@@ -164,6 +148,30 @@ router.post('/typein', (req, res) => {
         })
     }
 
+});
+
+
+// 根据 id 查询用户名
+router.get('/getUserName/:userid', (req, res) => {
+    const { userid } = req.params;
+
+    UserDataModel.findOne({ _id: userid }, (err, userRes) => {
+        if (err) {
+            console.log(err);
+        }
+        if (userRes === null) {
+            res.send({
+                status: false,
+                msg: '无用户数据'
+            })
+        } else {
+            res.send({
+                status: true,
+                username: userRes.name,
+                userrole: userRes.role
+            })
+        }
+    })
 });
 
 

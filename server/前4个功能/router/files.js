@@ -189,20 +189,30 @@ router.delete('/delete/:fileid', (req, res) => {
                     console.log(err)
                     res.send({
                         status: false,
-                        msg: '数据库文件删除失败'
+                        msg: '数据库视频路径删除失败'
                     })
                 }
-                // 删除本地文件
+                // 删除本地视频文件
                 fs.unlink(fileResult.filePath, err => {
                     if (err) {
                         res.send({
                             status: false,
-                            msg: '本地文件查询失败'
+                            msg: '本地视频文件查询失败'
                         })
                     } else {
-                        res.send({
-                            status: true,
-                            msg: '删除成功'
+                        // 删除本地图片文件
+                        fs.unlink(fileResult.imgPath, err => {
+                            if (err) {
+                                res.send({
+                                    status: false,
+                                    msg: '本地文件查询失败'
+                                })
+                            } else {
+                                res.send({
+                                    status: true,
+                                    msg: '删除成功'
+                                })
+                            }
                         })
                     }
                 })
@@ -237,7 +247,6 @@ router.get('/download/:fileid', (req, res) => {
                     })
                 }
             })
-
         }
     })
 });

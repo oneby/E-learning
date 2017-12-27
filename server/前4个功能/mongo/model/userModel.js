@@ -1,5 +1,5 @@
-var mongoose = require('mongoose')
-var UserDataSchema = require('./../schema/userSchema')
+const mongoose = require('mongoose')
+const UserDataSchema = require('./../schema/userSchema')
 
 
 mongoose.model('UserDataModel', UserDataSchema)

@@ -1,8 +1,8 @@
-var mongoose = require('mongoose')
-var Schema = mongoose.Schema
-var ObjectId = Schema.Types.ObjectId;
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
+const ObjectId = Schema.Types.ObjectId;
 
-var FileDataSchema = new Schema({
+const FileDataSchema = new Schema({
     from: { type: ObjectId, ref: 'UserDataModel' },
     fileName: String,
     filePath: String,
