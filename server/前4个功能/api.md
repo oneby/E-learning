@@ -2,16 +2,16 @@
 ============
 ### 用户权限
 ```javascript
-    if (t_role >= 50) {
+    if (t_role === 30) {
         // 管理员
         // to do...
-    } else if (t_role < 50 && t_role >= 20) {
+    } else if (t_role === 20) {
         // 教师用户
         // todo..
-    } else if (t_role < 20 && t_role >= 0) {
+    } else if (t_role === 10 ) {
         //普通用户
         // todo...
-    } else if(t_role < 0) {
+    } else if(t_role === 0) {
         // 黑名单
         // todo...
     }
@@ -28,8 +28,8 @@
 
         参数名称 | 必需 | 类型   | 描述
         ------------|------|--------|--------------
-        loginNum    | 是   | string | 用户手机号
-        loginPsd    | 是   | string | 用户登录密码
+        loginNum    | 是   | string | 用户学号
+        loginPsd    | 是   | string | 用户登录密码
 
     - **响应参数**
 

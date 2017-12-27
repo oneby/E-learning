@@ -7,21 +7,33 @@ const fs = require('fs');
 const FileModel = require('../mongo/model/fileModel')
 const UserDataModel = require('../mongo/model/userModel')
 
+// 设置文件上传最大数量
+const file_max_count = 1
+
 /**
  * 多文件，多种类上传
  * name: 字段名
  */
-const cpUpload = upload.fields([{ name: 'test-upload', maxCount: 5 }, { name: 'gallery', maxCount: 8 }])
+const cpUpload = upload.fields([{
+    name: 'bgimg',
+    maxCount: file_max_count
+}, {
+    name: 'video',
+    maxCount: file_max_count
+}])
 
 
-// 文件上传
+/**
+ * 文件上传
+ * 老师用户 上传背景图,上传文件
+ */
 router.post('/upload', cpUpload, (req, res) => {
+
     /**
      * 先判断是否登录
      * req.session.isLogin === true   --> 登录
      * req.session.isLogin === false  --> 未登录
      */
-
     if (!req.session.isLogin) {
         res.send({
             status: false,
@@ -49,81 +61,104 @@ router.post('/upload', cpUpload, (req, res) => {
                     msg: "无文件"
                 });
             } else {
-                const test_upload = req.files['test-upload']
-                console.log(test_upload);
+                const bgimg = req.files['bgimg']
+                const video = req.files['video']
+
+                console.log(bgimg);
 
                 // 遍历上传的文件信息 
-                for (let i = 0; i < test_upload.length; i++) {
-                    const uploadFile = test_upload[i]
+                // for (let i = 0; i < bgimg.length; i++) {
+                // }
 
-                    // 输出文件信息
-                    console.log('====================================================');
-                    console.log('fieldname: ' + uploadFile.fieldname);
-                    console.log('originalname: ' + uploadFile.originalname);
-                    console.log('encoding: ' + uploadFile.encoding);
-                    console.log('mimetype: ' + uploadFile.mimetype);
-                    console.log('size: ' + (uploadFile.size / 1024).toFixed(2) + 'KB');
-                    console.log('destination: ' + uploadFile.destination);
-                    console.log('filename: ' + uploadFile.filename);
-                    console.log('path: ' + uploadFile.path);
+                // 
 
-                    // 重命名文件
-                    let oldPath = path.join(__dirname, "./../" + uploadFile.path);
-                    let newName = new Date().getTime() + uploadFile.originalname
-                    let newPath = path.join(__dirname, './../uploads/' + newName);
+                const uploadImg = bgimg
+                const uploadFile = video
 
-                    // 重命名
-                    fs.rename(oldPath, newPath, (err) => {
-                        if (err) {
-                            res.send({
-                                status: false,
-                                msg: "重命名时发生错误"
-                            });
-                            console.log(err);
-                        } else {
+                // 输出文件信息
+                console.log('====================================================');
+                console.log('fieldname: ' + uploadFile.fieldname);
+                console.log('originalname: ' + uploadFile.originalname);
+                console.log('encoding: ' + uploadFile.encoding);
+                console.log('mimetype: ' + uploadFile.mimetype);
+                console.log('size: ' + (uploadFile.size / 1024).toFixed(2) + 'KB');
+                console.log('destination: ' + uploadFile.destination);
+                console.log('filename: ' + uploadFile.filename);
+                console.log('path: ' + uploadFile.path);
 
-                            /**
-                             * 
-                             * 
-                             *        没有考虑任何安全性问题，无限制上传
-                             * 
-                             * 
-                             */
+                // 获取图片文件 旧地址 新地址, 设置新名字
+                let oldImgPath = path.join(__dirname, './../' + uploadImg.path)
+                let newImgName = new Date().getTime() + uploadImg.originalname
+                let newImgPath = path.join(__dirname, './../uploads/' + newImgName);
 
-                            // 创建 model
-                            let _FileData = new FileModel({
-                                from: req.session.userInfo.userId,
-                                fileName: newName,
-                                filePath: newPath,
-                                fileSize: (uploadFile.size / 1024).toFixed(2) + 'KB',
-                                mimetype: uploadFile.mimetype
-                            });
+                // 重命名 图片文件
+                fs.rename(oldImgPath, newImgPath, (err) => {
+                    if (err) {
+                        res.send({
+                            status: false,
+                            msg: "视频重命名时发生错误"
+                        });
+                        console.log(err);
+                    }
+                })
 
-                            // 保存数据库
-                            _FileData.save((err, results) => {
-                                if (err) {
-                                    console.log(err)
-                                    res.send({
-                                        status: false,
-                                        msg: '数据库错误'
-                                    })
-                                }
-                                /**
-                                 * fileId    文件 ID
-                                 * fileName  文件名字
-                                 * fromId    上传用户 ID
-                                 */
+                // 获取视频文件 旧地址 新地址, 设置新名字
+                let oldFilePath = path.join(__dirname, "./../" + uploadFile.path);
+                let newFileName = new Date().getTime() + uploadFile.originalname
+                let newFilePath = path.join(__dirname, './../uploads/' + newFileName);
+
+                // 重命名 视频文件
+                fs.rename(oldFilePath, newFilePath, (err) => {
+                    if (err) {
+                        res.send({
+                            status: false,
+                            msg: "视频重命名时发生错误"
+                        });
+                        console.log(err);
+                    } else {
+
+                        /**
+                         * 
+                         * 
+                         *        没有考虑任何安全性问题，无限制上传
+                         * 
+                         * 
+                         */
+
+                        // 创建 model
+                        let _FileData = new FileModel({
+                            from: req.session.userInfo.userId,
+                            fileName: newFileName,
+                            filePath: newFilePath,
+                            fileSize: (uploadFile.size / 1024).toFixed(2) + 'KB',
+                            mimetype: uploadFile.mimetype,
+                            imgPath: newImgPath
+                        });
+
+                        // 保存数据库
+                        _FileData.save((err, results) => {
+                            if (err) {
+                                console.log(err)
                                 res.send({
-                                    status: true,
-                                    fileId: results._id,
-                                    fileName: uploadFile.fieldname,
-                                    fromId: results.from,
-                                    msg: "上传成功"
-                                });
-                            })
-                        }
-                    });
-                }
+                                    status: false,
+                                    msg: '数据库错误'
+                                })
+                            }
+                            /**
+                             * fileId    文件 ID
+                             * fileName  文件名字
+                             * fromId    上传用户 ID
+                             */
+                            res.send({
+                                status: true,
+                                fileId: results._id,
+                                fileName: uploadFile.fieldname,
+                                fromId: results.from,
+                                msg: "上传成功"
+                            });
+                        })
+                    }
+                });
             }
         }
     }
