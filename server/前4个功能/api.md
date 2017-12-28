@@ -98,7 +98,7 @@
 3. 根据 id 查询用户名
 	--------
 
-	- **接口地址 http://ip:port/user/getUserName/:userid**
+	- **接口地址 http://ip:port/user/getusername/:userid**
 
     - **请求方法:GET**
 
@@ -134,7 +134,53 @@
     }
     ```
 
-4. 录入用户接口
+
+4. 根据学号查询个人信息
+	--------
+
+	- **接口地址 http://ip:port/user/userinfo/:usernum**
+
+    - **请求方法:GET**
+
+    - **请求参数**
+
+        参数名称 | 必需 | 类型   | 描述
+        ------------|------|--------|--------------
+        usernum     | 是   | string | 用户学号
+
+    - **响应参数**
+
+        参数名称 | 必需 | 类型   | 描述
+        ----------------|------|---------|----------------
+        status          | 是   | boolean | 判断相应状态
+        userid          | 是   | string  | 用户学号
+        username        | 是   | string  | 用户昵称
+        usersex         | 是   | string  | 用户性别
+        userrole        | 是   | string  | 用户权限
+        userLearnTime   | 是   | string  | 学习时长总计
+        userExp         | 是   | string  | 经验
+        userAction      | 是   | string  | 关注
+        userFans        | 是   | string  | 粉丝数
+        userCon         | 是   | string  | 积分
+
+
+    1. 成功返回的数据
+    ```json
+    {
+
+    }
+    ```
+
+    2. 失败返回的数据
+    ```json
+    {
+        "status": false,
+        "msg": "无用户数据"
+    }
+    ```
+
+
+5. 录入用户接口
 	--------
 
 	- **接口地址 http://ip:port/user/typein**
@@ -149,6 +195,7 @@
         typeinAccount   | 是   | string | 用户学号
         typeinPassword  | 是   | string | 用户密码
         typeinRole      | 是   | string | 用户权限
+        typeinSex       | 是   | string | 用户性别
         
 
     - **响应参数**
@@ -159,7 +206,8 @@
         name        | 是   | string  | 用户昵称
         accountnum  | 是   | string  | 用户学号
         role        | 是   | string  | 用户权限
-        msg         | 是   | string  | 返回的信息        
+        sex         | 是   | string  | 用户性别     
+        msg         | 是   | string  | 返回的信息
 
 
     1. 成功返回的数据
@@ -169,6 +217,7 @@
         "name": "admin",
         "accountnum": "12345",
         "role": "100",
+        "sex": "man"
         "msg": "录入成功"
         
     }
@@ -194,7 +243,49 @@
     }
     ```
 
-5. 文件上传接口
+6. 用户修改自己密码
+	--------
+
+	- **接口地址 http://ip:port/user/update/pwd**
+
+    - **请求方法:POST**
+
+    - **请求参数**
+
+        参数名称 | 必需 | 类型   | 描述
+        ------------|------|--------|--------------
+        userId         | 是   | string | 用户学号
+        userLastPass   | 是   | string | 用户旧密码
+        userNewPass    | 是   | string | 用户新密码
+
+        
+
+    - **响应参数**
+
+        参数名称 | 必需 | 类型   | 描述
+        ------------|------|---------|----------------
+        status      | 是   | boolean | 判断相应状态  
+        msg         | 是   | string  | 返回的信息
+
+
+    1. 成功返回的数据
+    ```json
+    {
+        status: true,
+        msg: '密码更新成功'
+    }
+    ```
+
+    2. 失败返回的数据
+    ```json
+    {
+      
+    }
+    ```
+
+
+
+7. 文件上传接口
 	--------
 
 	- **接口地址 http://ip:port/file/upload**
@@ -256,7 +347,7 @@
     }
     ```
 
-6. 上传用户删除自己的文件
+8. 上传用户删除自己的文件
 	--------
 
 	- **接口地址 http://ip:port/file/delete/:fileid**
@@ -308,7 +399,7 @@
     }
     ```
 
-7. 文件下载接口
+9. 文件下载接口
 	--------
 
 	- **接口地址 http://ip:port/file/download/:fileid**
@@ -351,7 +442,7 @@
     }
     ```
 
-8. 查找所有已上传文件
+10. 查找所有已上传文件
 	--------
 
 	- **接口地址 http://ip:port/file/alldata**
@@ -454,7 +545,7 @@
     }
     ```
 
-9. 查找单个文件
+11. 查找单个文件
 	--------
 
 	- **接口地址 http://ip:port/file/detail/:fileid**
@@ -512,7 +603,7 @@
     }
     ```
 
-10. 发布评论
+12. 发布评论
 	--------
 
 	- **接口地址 http://ip:port/comment/release**
@@ -548,7 +639,7 @@
     }
     ```
 
-11. 获取所有评论
+13. 获取所有评论
 	--------
 
 	- **接口地址 http://ip:port/comment/results/:fileid**
