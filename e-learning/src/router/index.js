@@ -13,6 +13,9 @@ export default [{
             path: '/basic',
             component: r => require.ensure([], () => r(require('../components/basic/basic.vue')), 'basic'),
             redirect: '/basic/home',
+            meta: {
+                requireAuth: true
+            },
             children: [{
                 path: 'home',
                 component: r => require.ensure([], () => r(require('../components/basic/home/home.vue')), 'home')
