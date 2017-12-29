@@ -14,7 +14,6 @@ const comment_api = require('./router/comments')
 
 const app = express()
 
-
 // 连接数据库
 const dbUrl = 'mongodb://localhost:27017/e-learning'
 const db = mongoose.connect(dbUrl, { useMongoClient: true })
@@ -58,6 +57,7 @@ app.use(session({
     })
 }));
 
+app.use('/static', express.static('./picture'));
 
 app.use('/user', user_api)
 app.use('/file', file_api)
