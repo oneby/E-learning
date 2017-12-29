@@ -1,3 +1,6 @@
+const express = require('express')
+const router = express.Router()
+
 const CommentModel = require('./../mongo/model/commentModel');
 const UserDataModel = require('../mongo/model/userModel')
 
@@ -68,3 +71,6 @@ router.get('/results/:fileid', (req, res) => {
         }
     })
 })
+
+
+module.exports = router

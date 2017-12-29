@@ -476,7 +476,7 @@
             fileSize    | 是   | string | 文件大小    
             mimetype    | 是   | string | 文件格式    
             imgPath     | 是   | string | 背景图路径    
-            meta        | 是   | string | 时间对象    
+            meta        | 是   | Object | 时间对象    
             ___
             * meta
 
