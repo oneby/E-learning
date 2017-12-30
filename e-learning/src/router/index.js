@@ -33,6 +33,13 @@ export default [{
                 path: 'downclass',
                 component: r => require.ensure([], () => r(require('../components/basic/downclass/downclass.vue')), 'downclass')
 
+            }, {
+                path: 'searchmov',
+                component: r => require.ensure([], () => r(require('../components/basic/mov/searchmov.vue')), 'searchmov')
+            }, {
+                path: 'showmov',
+                component: r => require.ensure([], () => r(require('../components/basic/mov/showmov.vue')), 'showmov')
+
             }]
 
         },

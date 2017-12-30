@@ -43,34 +43,35 @@ export default {
         user: [{ required: true, message: "请输入用户名", trigger: "blur" }],
         password: [
           { required: true, message: "请输入密码", trigger: "blur" },
-          { type: "string", min: 6, message: "密码最小六位", trigger: "blur" }
+          { type: "string", min: 2, message: "密码最小六位", trigger: "blur" }
         ]
       }
     };
   },
   methods: {
     handleSubmit(name) {
-      // let _this = this;
+      let _this = this;
 
-      // this.$axios
-      //   .post("/api/login", {
-      //     username: this.formInline.user,
-      //     password: this.formInline.password
-      //   })
-      //   .then(function(response) {
-      //     console.log(response.data);
-      //     if (response.data.code == 0) {
-      //       var userData = {
-      //         role: 10,
-      //         name: response.data.userName
-      //       };
-      //       store.commit("login", userData);
-      //       _this.$router.push("/home");
-      //     }
-      //   })
-      //   .catch(function(error) {
-      //     console.log("请求失败");
-      //   });
+      this.$axios
+        .post("/user/login", {
+          loginNum: this.formInline.user,
+          loginPsd: this.formInline.password
+        })
+        .then(function(response) {
+          console.log(response.data.role);
+          if (response.data.role !== 30 ) {
+            var userData = {
+              role: parseInt(response.data.role),
+              name: response.data.name
+            };
+            store.commit("updata", userData);
+            console.log("rouke")
+            _this.$router.push("/basic/home");
+          }
+        })
+        .catch(function(error) {
+          console.log("请求失败");
+        });
     },
      changeicoflag() {
                 this.icoflag = !this.icoflag

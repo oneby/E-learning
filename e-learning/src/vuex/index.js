@@ -6,7 +6,7 @@ const state = {
     userdata: {
         'id': '',
         'name': '',
-        'role': 0,
+        'role': 44,
     }
 }
 const mutations = {

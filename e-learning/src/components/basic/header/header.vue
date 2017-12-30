@@ -2,7 +2,7 @@
   <div id="header">
       <el-row :gutter="20">
      <el-col :span="4">
-         <img src="../../login/logo.png" alt="logo" class="header_logo">
+         <img src="../../login/logo.png" alt="logo" class="header_logo" @click="backhome">
          
      </el-col>
     <el-col :span="16">
@@ -28,6 +28,11 @@ export default {
       return {
           searchData: '',
           imgsrc: require('./user.jpg')
+      }
+  },
+  methods: {
+      backhome: function(){
+          this.$router.push('/basic/home');
       }
   }
 }

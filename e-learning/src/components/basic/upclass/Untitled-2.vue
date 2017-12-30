@@ -1,7 +1,5 @@
 <template>
   <div id="bg">
-
-    <el-form ref="newform" :model="newform" >
     <div id="upclass">
     <p>视频图片:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
       &nbsp&nbsp
@@ -11,6 +9,7 @@
     </p>
 
 
+    <el-form ref="newform" :model="newform" >
         <el-form-item label="" >
     <el-upload
       class="avatar-uploader"
@@ -54,9 +53,8 @@
         <div class="el-upload__text">将视频拖到此处，或<em>点击上传</em></div>
       </el-upload>
         </el-form-item>
-   
+    </el-form>
     </div>
-     </el-form>
    <tfooter></tfooter>
   </div>
 
@@ -153,7 +151,7 @@ export default {
 }
 #upvido {
   display: inline;
-  margin-left: 220px;
+  margin-left: 60px;
 }
 #up_info {
   /* background-color: #409EFF; */
@@ -165,15 +163,6 @@ export default {
   font-size: 18px;
   color: #666;
   line-height: 28px;
- 
-}
-.el-form-item{
-  display: inline;
-  position: absolute;
-}
-.yes-btn{
-  position: relative;
-  margin-top: 30px;
-  margin-left: -342px;
+  padding-top: 10px;
 }
 </style>

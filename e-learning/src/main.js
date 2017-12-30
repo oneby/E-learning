@@ -11,7 +11,7 @@ import 'iview/dist/styles/iview.css'
 import 'element-ui/lib/theme-chalk/index.css'
 import store from './vuex/'
 Vue.config.productionTip = false
-axios.defaults.baseURL = 'http://rap2api.taobao.org/app/mock/1162/'
+    // axios.defaults.baseURL = 'http://rap2api.taobao.org/app/mock/1162/'
 Vue.prototype.$axios = axios
 
 Vue.use(Vuex)
