@@ -47,5 +47,7 @@ router.get('/alldata', fileAction.findAllFile)
 // 查找单个文件
 router.get('/detail/:fileid', fileAction.findOneFile)
 
+// 搜索课程
+router.get('/search', searchFile)
 
 module.exports = router;
