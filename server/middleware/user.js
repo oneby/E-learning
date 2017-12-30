@@ -8,8 +8,8 @@ const SALT_WORK_FACTOR = 10
 function oAuthAdmin(req, res, next) {
     if (req.session.isLogin) {
         // 获取 session 中的 role
-        // req.session.userInfo.role
-        const t_role = req.session.userInfo.role
+        // req.session.userInfo.userRole
+        const t_role = req.session.userInfo.userRole
 
         // 管理员
         if (t_role === 30) {
@@ -32,8 +32,8 @@ function oAuthAdmin(req, res, next) {
 function oAuthTeacher(req, res, next) {
     if (req.session.isLogin) {
         // 获取 session 中的 role
-        // req.session.userInfo.role
-        const t_role = req.session.userInfo.role
+        // req.session.userInfo.userRole
+        const t_role = req.session.userInfo.userRole
 
         // 老师
         if (t_role >= 20) {
@@ -233,6 +233,27 @@ function findNameById(req, res) {
             })
         }
     })
+
+    this.selectName = function() {
+        UserDataModel.findOne({ _id: userid }, (err, userRes) => {
+            if (err) {
+                console.log(err);
+            }
+            if (userRes === null) {
+                res.send({
+                    status: false,
+                    msg: '无用户数据'
+                })
+            } else {
+                res.send({
+                    status: true,
+                    username: userRes.name,
+                    userrole: userRes.role
+                })
+            }
+        })
+    }
+
 }
 
 // 根据学号查询个人信息

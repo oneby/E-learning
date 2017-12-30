@@ -545,7 +545,7 @@
     }
     ```
 
-11. 查找单个文件
+11. 查找单个视频
 	--------
 
 	- **接口地址 http://ip:port/file/detail/:fileid**
@@ -568,6 +568,8 @@
         fromName    | 是   | string  | 上传用户名字
         fileName    | 是   | string  | 文件名字
         fileSize    | 是   | string  | 文件大小
+        filePath    | 是   | string  | 文件地址
+        imgPath     | 是   | string  | 背景图地址
         date        | 是   | string  | 文件上传日期
         
 
@@ -579,6 +581,8 @@
         "fromName": "admin",
         "fileName": "1513861952608Screenshot_2017-12-02-12-09-33-607_com.valvesoftw.png",
         "fileSize": "219.25KB",
+        "filePath": "/xxx/xxx/xxx/xxx",        
+        "imgPath": "/xxx/xxx/xxx/xxx",        
         "date": "2017-12-21T13:12:32.609Z"
     }
     ```
