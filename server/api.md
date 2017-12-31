@@ -609,7 +609,7 @@
 12. 搜索视频
 	--------
 
-	- **接口地址 http://ip:port/search?courseName=**
+	- **接口地址 http://ip:port/file/search?courseName=**
 
     - **请求方法: GET**
 
@@ -632,13 +632,15 @@
 
             参数名称 | 必需 | 类型   | 描述
             ------------|------|---------|----------------
-            from        | 是   | string | 评论者 id   
+            __id        | 是   | string | 课程 id               
+            from        | 是   | string | 上传者 id   
             fileName    | 是   | string | 视频名称
             filePath    | 是   | string | 视频路径
             fileSize    | 是   | string | 视频大小
             mimetype    | 是   | string | 视频类型
             imgPath     | 是   | string | 背景图片路径
-            meta        | 是   | Object | 评论时间
+            coursePrice | 是   | string | 价格 免费
+            meta        | 是   | Object | 创建时间
             ___
             * meta
 

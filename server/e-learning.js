@@ -58,6 +58,7 @@ app.use(session({
 }));
 
 app.use('/static', express.static('./picture'));
+app.use(express.static('./uploads'));
 
 app.use('/user', user_api)
 app.use('/file', file_api)
