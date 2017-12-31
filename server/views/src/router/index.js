@@ -4,10 +4,8 @@ import Login from '@/components/Login'
 import ErrorPage from '@/components/ErrorPage'
 import IndexPage from '@/components/IndexPage'
 import Total from '@/components/Total'
-import Query from "@/components/Query";
 import Manager from "@/components/Manager";
 import Register from "@/components/Register";
-import Mute from "@/components/Mute";
 Vue.use(Router)
 
 let router = new Router({

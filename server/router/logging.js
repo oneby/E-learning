@@ -12,3 +12,5 @@ router.get('/:table',Oauth,(req,res)=>{
         res.json(result);
     })
 })
+
+module.exports = router

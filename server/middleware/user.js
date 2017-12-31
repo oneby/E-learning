@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt')
 
 const SALT_WORK_FACTOR = 10
 const ADMIN_ROLE = 30
-const TEACHER_ROLE
+const TEACHER_ROLE = 20
 
 // *************   权限相关   ******************
 // 管理员权限认证

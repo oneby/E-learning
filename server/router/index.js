@@ -6,3 +6,5 @@ router.get('/', function(req, res, next) {
     Logging.add('user');
     res.sendfile('./dist/index.html');
 });
+
+module.exports = router
