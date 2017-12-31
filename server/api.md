@@ -476,7 +476,7 @@
             fileSize    | 是   | string | 文件大小    
             mimetype    | 是   | string | 文件格式    
             imgPath     | 是   | string | 背景图路径    
-            meta        | 是   | string | 时间对象    
+            meta        | 是   | Object | 时间对象    
             ___
             * meta
 
@@ -545,7 +545,7 @@
     }
     ```
 
-11. 查找单个文件
+11. 查找单个视频
 	--------
 
 	- **接口地址 http://ip:port/file/detail/:fileid**
@@ -568,6 +568,8 @@
         fromName    | 是   | string  | 上传用户名字
         fileName    | 是   | string  | 文件名字
         fileSize    | 是   | string  | 文件大小
+        filePath    | 是   | string  | 文件地址
+        imgPath     | 是   | string  | 背景图地址
         date        | 是   | string  | 文件上传日期
         
 
@@ -579,6 +581,8 @@
         "fromName": "admin",
         "fileName": "1513861952608Screenshot_2017-12-02-12-09-33-607_com.valvesoftw.png",
         "fileSize": "219.25KB",
+        "filePath": "/xxx/xxx/xxx/xxx",        
+        "imgPath": "/xxx/xxx/xxx/xxx",        
         "date": "2017-12-21T13:12:32.609Z"
     }
     ```
@@ -602,8 +606,66 @@
         "msg": "用户无数据"
     }
     ```
+12. 搜索视频
+	--------
 
-12. 发布评论
+	- **接口地址 http://ip:port/file/search?courseName=**
+
+    - **请求方法: GET**
+
+    - **请求参数**
+
+        参数名称 | 必需 | 类型   | 描述
+        ----------|------|--------|--------------
+        无
+        
+
+    - **响应参数**
+
+        参数名称 | 必需 | 类型   | 描述
+        ------------|------|---------|----------------
+        status      | 是   | boolean | 判断状态信息
+        searchRes   | 是   | Object  | 评论信息
+        msg         | 是   | string  | 信息
+        ___
+        * searchRes
+
+            参数名称 | 必需 | 类型   | 描述
+            ------------|------|---------|----------------
+            __id        | 是   | string | 课程 id               
+            from        | 是   | string | 上传者 id   
+            fileName    | 是   | string | 视频名称
+            filePath    | 是   | string | 视频路径
+            fileSize    | 是   | string | 视频大小
+            mimetype    | 是   | string | 视频类型
+            imgPath     | 是   | string | 背景图片路径
+            coursePrice | 是   | string | 价格 免费
+            meta        | 是   | Object | 创建时间
+            ___
+            * meta
+
+                参数名称 | 必需 | 类型   | 描述
+                ------------|------|---------|----------------
+                updateAt    | 是   | string | 更新时间   
+                createAt    | 是   | string | 创建时间
+
+
+    1. 成功返回的数据
+    ```json
+    {
+        
+    }
+    ```
+
+    2. 失败返回的数据
+    ```json
+    {
+
+    }
+    ```
+
+
+13. 发布评论
 	--------
 
 	- **接口地址 http://ip:port/comment/release**
@@ -639,7 +701,7 @@
     }
     ```
 
-13. 获取所有评论
+14. 获取所有评论
 	--------
 
 	- **接口地址 http://ip:port/comment/results/:fileid**

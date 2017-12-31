@@ -2,7 +2,7 @@ const CommentModel = require('./../mongo/model/commentModel');
 const UserDataModel = require('../mongo/model/userModel')
 
 // 发布评论
-router.post('/release', (req, res) => {
+function release(req, res) {
     /**
      * 先判断是否登录
      * req.session.isLogin === true   --> 登录
@@ -41,10 +41,11 @@ router.post('/release', (req, res) => {
             })
         })
     }
-})
+}
+
 
 // 获取所有评论
-router.get('/results/:fileid', (req, res) => {
+function getAllComments(req, res) {
     const { fileid } = req.params;
 
     CommentModel.find({ to: fileid }, (err, commentRes) => {
@@ -67,4 +68,10 @@ router.get('/results/:fileid', (req, res) => {
             })
         }
     })
-})
+}
+
+
+module.exports = {
+    release,
+    getAllComments
+}

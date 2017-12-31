@@ -9,6 +9,7 @@ const FileDataSchema = new Schema({
     fileSize: String,
     mimetype: String,
     imgPath: String,
+    coursePrice: String,
     meta: {
         createAt: {
             type: Date,
