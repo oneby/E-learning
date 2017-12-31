@@ -3,7 +3,10 @@ const router = express.Router()
 const bcrypt = require('bcrypt')
 
 const UserDataModel = require('../mongo/model/userModel')
+
 const userAction = require('./../middleware/user')
+
+const oauth = require('./../libs/oauth')
 
 const SALT_WORK_FACTOR = 10
 
@@ -15,7 +18,7 @@ router.post('/login', userAction.login);
 router.post('/signout', userAction.logout);
 
 // 录入用户
-router.post('/typein', userAction.oAuthAdmin, userAction.adminInput);
+router.post('/typein', oauth.oAuthAdmin, userAction.adminInput);
 
 
 // 根据 id 查询用户名

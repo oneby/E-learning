@@ -8,7 +8,7 @@ const http = require('http');
 const debug = require('debug')('server1:server');
 const uuid = require('uuid/v4')
 
-const index = require('./router/index')
+// const index = require('./router/index')
 
 const logging_api = require('./router/logging')
 const user_api = require('./router/users')
@@ -65,11 +65,11 @@ app.use(express.static('./uploads'));
 app.use('/picture', express.static('./picture'));
 app.use(express.static('./views/dist'));
 
-app.use('/', index);
+// app.use('/', index);
 app.use('/user', user_api)
 app.use('/file', file_api)
 app.use('/comment', comment_api)
-app.use('/logging',logging_api)
+    // app.use('/logging', logging_api)
 
 // 路由设置
 const port = normalizePort(process.env.PORT || '3456');

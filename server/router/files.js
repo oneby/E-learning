@@ -8,7 +8,10 @@ const fs = require('fs');
 const FileModel = require('../mongo/model/fileModel')
 const UserDataModel = require('../mongo/model/userModel')
 
-const userAction = require('./../middleware/user')
+
+const oauth = require('./../libs/oauth')
+
+// const userAction = require('./../middleware/user')
 const fileAction = require('./../middleware/file')
 
 
@@ -32,10 +35,10 @@ const cpUpload = upload.fields([{
  * 文件上传
  * 老师用户 上传背景图,上传文件
  */
-router.post('/upload', cpUpload, userAction.oAuthTeacher, fileAction.uploadFile);
+router.post('/upload', cpUpload, oauth.oAuthTeacher, fileAction.uploadFile);
 
 // 上传用户删除自己的文件
-router.delete('/delete/:fileid', userAction.oAuthTeacher, fileAction.deleteFile)
+router.delete('/delete/:fileid', oauth.oAuthTeacher, fileAction.deleteFile)
 
 
 // 文件下载
