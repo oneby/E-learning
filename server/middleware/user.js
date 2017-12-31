@@ -2,6 +2,8 @@ const UserDataModel = require('../mongo/model/userModel')
 const bcrypt = require('bcrypt')
 
 const SALT_WORK_FACTOR = 10
+const ADMIN_ROLE = 30
+const TEACHER_ROLE
 
 // *************   权限相关   ******************
 // 管理员权限认证
@@ -12,7 +14,7 @@ function oAuthAdmin(req, res, next) {
         const t_role = req.session.userInfo.role
 
         // 管理员
-        if (t_role === 30) {
+        if (t_role === ADMIN_ROLE) {
             next()
         } else {
             res.send({
@@ -36,7 +38,7 @@ function oAuthTeacher(req, res, next) {
         const t_role = req.session.userInfo.role
 
         // 老师
-        if (t_role >= 20) {
+        if (t_role >= TEACHER_ROLE) {
             next()
         } else {
             res.send({
