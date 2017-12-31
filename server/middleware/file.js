@@ -52,7 +52,7 @@ function uploadFile(req, res) {
         // 本地路径
         let newFilePath = path.join(__dirname, './../uploads/' + newFileName);
 
-        // 服务器路径
+        // 服务器路径 
         // let newFilePath = path.join(__dirname, 'http://123.207.154.174:3456/' + newFileName);
 
 

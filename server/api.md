@@ -609,7 +609,7 @@
 12. 搜索视频
 	--------
 
-	- **接口地址 http://ip:port/search?courseName=**
+	- **接口地址 http://ip:port/file/search?courseName=**
 
     - **请求方法: GET**
 
