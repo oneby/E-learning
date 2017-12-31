@@ -9,6 +9,8 @@ const debug = require('debug')('server1:server');
 const uuid = require('uuid/v4')
 
 const user_api = require('./router/users')
+const index = require('./router/index')
+
 const file_api = require('./router/files')
 const comment_api = require('./router/comments')
 
@@ -57,9 +59,12 @@ app.use(session({
     })
 }));
 
-app.use('/static', express.static('./picture'));
+// app.use('/static', express.static('./picture'));
 app.use(express.static('./uploads'));
+app.use('/picture', express.static('./picture'));
+app.use(express.static('./views/dist'));
 
+app.use('/', index);
 app.use('/user', user_api)
 app.use('/file', file_api)
 app.use('/comment', comment_api)
