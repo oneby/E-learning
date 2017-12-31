@@ -26,11 +26,8 @@ Logging.prototype.add = function(tableName,count){
     count = count||1;
     this.statistics[tableName].incr(count);
 }
-Logging.prototype.get = function(tableName,date,callback){
-    if(typeof date ==='function'){
-        callback = date;
-        date = now.format('YYYYMMDD');
-    }
+Logging.prototype.get = function(tableName,date){
+    date = date || now.format('YYYYMMDD');
     return new Promise (function(resolve,reject){
         this.statistics[tableName].get(date,(err,result)=>{
             resolve(err,result);
