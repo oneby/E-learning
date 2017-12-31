@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="apps">
     <router-view></router-view>
   </div>
 </template>
@@ -9,7 +9,7 @@
   }
 </script>
 <style>
-#app{
+#apps{
   overflow: hidden;
 }
 </style>

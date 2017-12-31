@@ -1,9 +1,21 @@
 <template>
+<div>
  <div class="mov_list">
-       
-  
-  <footer></footer>
+     
+        <el-card v-for="tiem in showData" :key="tiem._id" class="mov_card">
+      <img :src="tiem.imgPath " class="image">
+      <div style="padding: 14px;">
+        <span>{{tiem.fileName}}</span>
+        <div class="bottom clearfix">
+          <time class="time">{{ tiem.meta.updateAt}}</time>
+          <el-button type="text" class="button" @click="mov(tiem._id)">观看视频</el-button>
+        </div>
+      </div>
+    </el-card>
+     
   </div>
+  <tfooter></tfooter>
+</div>
 </template>
 <script type="text/ecmascript-6">
 import tfooter from "../footer/footer";
@@ -17,15 +29,15 @@ export default {
     tfooter
   },
   methods: {
-    searchScore(id) {
-      //  console.log("ssss")
-      console.log(id);
-      this.$router.push({ name: "score", params: { scorename: id } });
+  
+    mov(_id){
+        // console.log(_id)
+         this.$router.push({ name: "showmov", params: { id: _id } });
     }
   },
   created() {
-    // console.log("/api/suggest?term=" + this.$route.params.keyword);
-    if (this.$route.params.keyword == "$allmov") {
+    // console.log( this.$route.params.scorename);
+    if (this.$route.params.scorename == "$allmov") {
         let _this = this;
         this.$axios
         .get("/file/alldata")
@@ -38,7 +50,7 @@ export default {
     } else {
       let _this = this;
       this.$axios
-        .get("/file/search?courseName=" + this.$route.params.keyword)
+        .get("/file/search?courseName=" + this.$route.params.scorename)
         .then(res => {
           _this.showData = res.data.searchRes;
             console.log(_this.showData)
@@ -56,6 +68,13 @@ export default {
   right: 0;
   margin: 20px auto 10px auto;
   background-color: antiquewhite;
+  height: 800px;
+}
+.mov_card{
+    width: 250px;
+    margin: 10px;
+    display: inline-block;
+    text-align: center;
 }
 </style>
 

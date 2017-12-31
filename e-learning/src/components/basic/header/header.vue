@@ -9,7 +9,7 @@
 
      <div  id="search">
   <el-input placeholder="请输入内容" v-model="searchData" class="input-with-select">
-    <el-button slot="append" icon="el-icon-search"></el-button>
+    <el-button slot="append" icon="el-icon-search" @click="searchmov"></el-button>
   </el-input>
      </div>
     </el-col>
@@ -33,6 +33,10 @@ export default {
   methods: {
       backhome: function(){
           this.$router.push('/basic/home');
+      },
+      searchmov: function(){
+          console.log("scsc",this.searchData)
+           this.$router.push({name: 'score', params: { scorename: this.searchData}})
       }
   }
 }

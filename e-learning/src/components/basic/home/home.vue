@@ -16,7 +16,7 @@
                </div>
                </el-col>
            <el-col :span="6">
-             <div class="button2">
+             <div class="button2" @click="watchmov">
                 <Icon type="social-youtube"></Icon>
                 <p class="button_p">观看视频</p>
              </div>
@@ -148,6 +148,9 @@ export default {
             this.$router.push("/basic/downclass")
             break;
         }
+      },
+      watchmov: function(){
+         this.$router.push({name: 'score', params: { scorename: '$allmov'}}) 
       }
 
   },
