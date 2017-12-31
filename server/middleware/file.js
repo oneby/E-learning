@@ -299,12 +299,13 @@ function searchFile(req, res) {
                 status: false,
                 msg: '无数据'
             })
+        } else {
+            res.send({
+                status: true,
+                searchRes: fileRes,
+                msg: '查找成功'
+            })
         }
-        res.send({
-            status: true,
-            searchRes: fileRes,
-            msg: '查找成功'
-        })
     })
 }
 
