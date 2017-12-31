@@ -13,17 +13,9 @@
                         <i class="el-icon-menu"></i>
                         <span slot="title">网站总览</span>
                     </el-menu-item>                    
-                    <el-menu-item v-show="isAdmin" index="/index/query">
-                        <i class="el-icon-menu"></i>
-                        <span slot="title">弹幕查询</span>
-                    </el-menu-item>
                     <el-menu-item v-show="isSuper" index="/index/manager">
                         <i class="el-icon-menu"></i>                    
                         <span slot="title">用户管理</span>
-                    </el-menu-item>
-                    <el-menu-item v-show="isAdmin" index="/index/mute">
-                        <i class="el-icon-menu"></i>                    
-                        <span slot="title">禁言查询</span>
                     </el-menu-item>
 
                     <div class="userInfo">

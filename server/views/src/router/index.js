@@ -43,16 +43,8 @@ let router = new Router({
           component:Total
         },
         {
-          path:'query',
-          component:Query
-        },
-        {
           path:'manager',
           component:Manager
-        },
-        {
-          path:'mute',
-          component:Mute
         }
       ]
     }
