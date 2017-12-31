@@ -48,6 +48,6 @@ router.get('/alldata', fileAction.findAllFile)
 router.get('/detail/:fileid', fileAction.findOneFile)
 
 // 搜索课程
-router.get('/search', searchFile)
+router.get('/search', fileAction.searchFile)
 
 module.exports = router;

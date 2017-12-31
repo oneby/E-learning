@@ -25,90 +25,89 @@ function uploadFile(req, res) {
         const bgimg = req.files['bgimg']
         const video = req.files['video']
 
+        const uploadImg = bgimg[0]
+
+        // 获取图片文件 旧地址 新地址, 设置新名字
+        let oldImgPath = path.join(__dirname, './../' + uploadImg.path)
+        let newImgName = new Date().getTime() + uploadImg.originalname
+        let newImgPath = path.join(__dirname, './../uploads/' + newImgName);
+
+        // 重命名 图片文件
+        fs.rename(oldImgPath, newImgPath, (err) => {
+            if (err) {
+                res.send({
+                    status: false,
+                    msg: "视频重命名时发生错误"
+                });
+                console.log(err);
+            }
+        })
+
+        const uploadFile = video[0]
+
+        // 获取视频文件 旧地址 新地址, 设置新名字
+        let oldFilePath = path.join(__dirname, "./../" + uploadFile.path);
+        let newFileName = new Date().getTime() + uploadFile.originalname
+
+        // 本地路径
+        let newFilePath = path.join(__dirname, './../uploads/' + newFileName);
+
+        // 服务器路径
+        // let newFilePath = path.join(__dirname, 'http://123.207.154.174:3456/' + newFileName);
 
 
-        if (bgimg) {
-            const uploadImg = bgimg[0]
+        // 重命名 视频文件
+        fs.rename(oldFilePath, newFilePath, (err) => {
+            if (err) {
+                res.send({
+                    status: false,
+                    msg: "视频重命名时发生错误"
+                });
+                console.log(err);
+            } else {
 
-            // 获取图片文件 旧地址 新地址, 设置新名字
-            let oldImgPath = path.join(__dirname, './../' + uploadImg.path)
-            let newImgName = new Date().getTime() + uploadImg.originalname = `    `
-            let newImgPath = path.join(__dirname, './../uploads/' + newImgName);
+                /**
+                 * 
+                 * 
+                 *        没有考虑任何安全性问题，无限制上传
+                 * 
+                 * 
+                 */
 
-            // 重命名 图片文件
-            fs.rename(oldImgPath, newImgPath, (err) => {
-                if (err) {
-                    res.send({
-                        status: false,
-                        msg: "视频重命名时发生错误"
-                    });
-                    console.log(err);
-                }
-            })
-        }
+                // 创建 model
+                let _FileData = new FileModel({
+                    from: req.session.userInfo.userId,
+                    fileName: newFileName,
+                    filePath: newFilePath,
+                    fileSize: (uploadFile.size / 1024).toFixed(2) + 'KB',
+                    mimetype: uploadFile.mimetype,
+                    imgPath: newImgPath
+                });
 
-        if (video) {
-            const uploadFile = video[0]
-                // 获取视频文件 旧地址 新地址, 设置新名字
-            let oldFilePath = path.join(__dirname, "./../" + uploadFile.path);
-            let newFileName = new Date().getTime() + uploadFile.originalname
-            let newFilePath = path.join(__dirname, './../uploads/' + newFileName);
-
-            // 重命名 视频文件
-            fs.rename(oldFilePath, newFilePath, (err) => {
-                if (err) {
-                    res.send({
-                        status: false,
-                        msg: "视频重命名时发生错误"
-                    });
-                    console.log(err);
-                } else {
-
-                    /**
-                     * 
-                     * 
-                     *        没有考虑任何安全性问题，无限制上传
-                     * 
-                     * 
-                     */
-
-                    // 创建 model
-                    let _FileData = new FileModel({
-                        from: req.session.userInfo.userId,
-                        fileName: newFileName,
-                        filePath: newFilePath,
-                        fileSize: (uploadFile.size / 1024).toFixed(2) + 'KB',
-                        mimetype: uploadFile.mimetype,
-                        imgPath: newImgPath
-                    });
-
-                    // 保存数据库
-                    _FileData.save((err, results) => {
-                        if (err) {
-                            console.log(err)
-                            res.send({
-                                status: false,
-                                msg: '数据库错误'
-                            })
-                        }
-                        /**
-                         * fileId    文件 ID
-                         * fileName  文件名字
-                         * fromId    上传用户 ID
-                         */
+                // 保存数据库
+                _FileData.save((err, results) => {
+                    if (err) {
+                        console.log(err)
                         res.send({
-                            status: true,
-                            fileId: results._id,
-                            fileName: uploadFile.fieldname,
-                            fromId: results.from,
-                            msg: "上传成功"
-                        });
-                    })
-                }
-            });
-        }
-
-
+                            status: false,
+                            msg: '数据库错误'
+                        })
+                    }
+                    /**
+                     * fileId    文件 ID
+                     * fileName  文件名字
+                     * fromId    上传用户 ID
+                     */
+                    res.send({
+                        status: true,
+                        fileId: results._id,
+                        fileName: uploadFile.fieldname,
+                        fromId: results.from,
+                        msg: "上传成功"
+                    });
+                })
+            }
+        });
     }
 }
 
