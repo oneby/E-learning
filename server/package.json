@@ -5,7 +5,7 @@
     "main": "e-learning.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "npm run build & node ./e-learning.js",
+        "start": "npm run build && node ./e-learning.js",
         "build": "node views/build/build.js"
     },
     "author": "Botai",
@@ -17,6 +17,7 @@
         "body-parser": "~1.17.1",
         "connect-mongo": "^2.0.0",
         "cookie-parser": "~1.4.3",
+        "node_ranaly": "^0.1.1",
         "debug": "~2.6.3",
         "express": "~4.15.2",
         "express-session": "^1.15.6",
