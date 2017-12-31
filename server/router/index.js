@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
-var users = require('../middleware/statistics').users;
+var Logging = require('../middleware/statistics');
 
 router.get('/', function(req, res, next) {
-    users.incr();
+    Logging.add('user');
     res.sendfile('./dist/index.html');
 });
