@@ -146,6 +146,7 @@ export default {
   display: block;
 }
 #upimg {
+  z-index: 50;
   float: left;
 }
 .upload-demo {
@@ -170,6 +171,7 @@ export default {
 .el-form-item{
   display: inline;
   position: absolute;
+  width: 0;
 }
 .yes-btn{
   position: relative;

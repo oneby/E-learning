@@ -8,7 +8,7 @@ const SALT_WORK_FACTOR = 10
 function oAuthAdmin(req, res, next) {
     if (req.session.isLogin) {
         // 获取 session 中的 role
-        // req.session.userInfo.userRole
+
         const t_role = req.session.userInfo.userRole
 
         // 管理员
@@ -37,6 +37,7 @@ function oAuthTeacher(req, res, next) {
 
         // 老师
         if (t_role >= 20) {
+            console.log('1111111')
             next()
         } else {
             res.send({
