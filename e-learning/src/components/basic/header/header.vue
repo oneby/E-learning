@@ -14,7 +14,7 @@
      </div>
     </el-col>
     <el-col :span="4">
-        <div class="photo">
+        <div class="photo" @click="logdown">
             <img :src="imgsrc" alt="portrait" style="width:100%; cursor：pointer;"> 
         </div>
     </el-col>
@@ -37,6 +37,9 @@ export default {
       searchmov: function(){
           console.log("scsc",this.searchData)
            this.$router.push({name: 'score', params: { scorename: this.searchData}})
+      },
+      logdown: function(){
+           this.$router.push('/');
       }
   }
 }

@@ -76,5 +76,8 @@ export default {
     display: inline-block;
     text-align: center;
 }
+.image{
+  width: 100%;
+}
 </style>
 
