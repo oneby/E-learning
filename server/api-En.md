@@ -664,3 +664,90 @@ Interface documentation
     }
     ```
 
+13. 发布评论
+	--------
+
+	- **Interface address http://ip:port/comment/release**
+
+    - **request method: POST**
+
+    - **request parameter**
+
+        Parameter Name | need | type   | Description
+        ----------|------|--------|--------------
+        fileid    | Yes   | string | Document ID
+        comment   | Yes   | string | comment content 
+        
+
+    - ** response parameter**
+
+        Parameter Name | need | type   | Description
+        ------------|------|---------|----------------
+        status      | Yes   | boolean | Status information
+        msg         | Yes   | string  | return message 
+
+    1. 成功返回的数据
+    ```json
+    {
+        
+    }
+    ```
+
+    2. 失败返回的数据
+    ```json
+    {
+
+    }
+    ```
+
+14. Get all the reviews
+	--------
+
+	- **Interface address http://ip:port/comment/results/:fileid**
+
+    - **request method: GET**
+
+    - **request parameter**
+
+        Parameter Name | need | type   | Description
+        ----------|------|--------|--------------
+        fileid    | Yes   | string | Document ID
+        
+
+    - ** response parameter**
+
+        Parameter Name | need | type   | Description
+        ------------|------|---------|----------------
+        status      | Yes   | boolean | Status information
+        comment     | Yes   | Object  | Review the information
+        ___
+        * comment
+
+            Parameter Name | need | type   | Description
+            ------------|------|---------|----------------
+            from    | Yes   | string | observer  id   
+            to      | Yes   | string | The comments Video id
+            content | Yes   | string | comment content 
+            meta    | Yes   | string | comment time
+            ___
+            * meta
+
+                Parameter Name | need | type   | Description
+                ------------|------|---------|----------------
+                updateAt    | Yes   | string | update time   
+                createAt    | Yes   | string | create time
+
+
+    1. 成功返回的数据
+    ```json
+    {
+        
+    }
+    ```
+
+    2. 失败返回的数据
+    ```json
+    {
+
+    }
+    ```
