@@ -283,3 +283,118 @@ Interface documentation
     ```
 
 
+
+7.  File upload interface
+	--------
+
+	- **Interface address http://ip:port/file/upload**
+
+    - **request method:POST**
+
+    - **request parameter**
+
+        Parameter Name | need | type   | Description
+        ----------|------|--------|--------------
+        name      | Yes   | string |  Upload the file field name
+        
+        
+
+    - ** response parameter**
+
+        Parameter Name | need | type   | Description
+        ------------|------|---------|----------------
+        status      | Yes   | boolean | Judgment state
+        fileId      | Yes   | string  | Document ID
+        fileName    | Yes   | string  | Doucument Name
+        fromId      | Yes   | string  | uploader  ID
+        msg         | Yes   | string  | Return message        
+
+
+    1. 成功返回的数据
+    ```json
+    {
+        "status": true,
+        "fileId": "5a3bb3400309f67e93e99cbd",
+        "fileName": "1513861952608Screenshot_2017-12-02-12-09-33-607_com.valvesoftw.png",
+        "fromId": "5a27e247970a925f4e5aa844",
+        "msg": "上传成功"
+        
+    }
+    ```
+
+    2. 失败返回的数据
+    ```json
+    {
+        "status": false,
+        "msg": "请登录！"
+    }
+    {
+        "status": false,
+        "msg": "user permission 不足"
+    }
+    {
+        "status": false,
+        "msg": "无Document"
+    }
+    {
+        "status": false,
+        "msg": "重命名时发生错误"
+    }
+    {
+        "status": false,
+        "msg": "数据库错误"
+    }
+    ```
+
+8.  Upload users to delete their own files
+	--------
+
+	- **Interface address http://ip:port/file/delete/:fileid**
+
+    - **request method: DELETE**
+
+    - **request parameter**
+
+        Parameter Name | need | type   | Description
+        ----------|------|--------|--------------
+        fileid    | Yes   | string | Document ID
+        
+        
+
+    - ** response parameter**
+
+        Parameter Name | need | type   | Description
+        ------------|------|---------|----------------
+        status      | Yes   | boolean | Judgment state
+        msg         | Yes   | string  | Return message        
+
+
+    1. 成功返回的数据
+    ```json
+    {
+        "status": true,
+        "msg": "删除成功"
+        
+    }
+    ```
+
+    2. 失败返回的数据
+    ```json
+    {
+        "status": false,
+        "msg": "Document查询失败"
+    }
+    {
+        "status": false,
+        "msg": "Document无数据"
+    }
+    {
+        "status": false,
+        "msg": "数据库Document删除失败"
+    }
+    {
+        "status": false,
+        "msg": "本地Document查询失败"
+    }
+    ```
+
