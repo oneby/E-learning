@@ -398,3 +398,149 @@ Interface documentation
     }
     ```
 
+9. Document DownLoad interface
+	--------
+
+	- **Interface address http://ip:port/file/download/:fileid**
+
+    - **request method: GET**
+
+    - **request parameter**
+
+        Parameter Name | need | type   | Description
+        ----------|------|--------|--------------
+        fileid    | Yes   | string | Document ID
+        
+        
+
+    - ** response parameter**
+
+        Parameter Name | need | type   | Description
+        ------------|------|---------|----------------
+        无     
+
+
+    1. 成功返回的数据
+    ```json
+    // 无返回,直接下载
+    ```
+
+    2. 失败返回的数据
+    ```json
+    {
+        "status": false,
+        "msg": "Document查询失败"
+    }
+    {
+        "status": false,
+        "msg": "Document无数据"
+    }
+    {
+        "status": false,
+        "msg": "Document下载失败"
+    }
+    ```
+
+10. Find all uploaded files
+	--------
+
+	- **Interface address http://ip:port/file/alldata**
+
+    - **request method: GET**
+
+    - **request parameter**
+
+        Parameter Name | need | type   | Description
+        ----------|------|--------|--------------
+        无
+        
+        
+
+    - ** response parameter**
+
+        Parameter Name | need | type   | Description
+        ------------|------|---------|----------------
+        status    | Yes    | string | status messages    
+        allFile    | Yes   | Object | Document ResultObject    
+        
+        ___
+        * allFile
+
+            Parameter Name | need | type   | Description
+            ------------|------|---------|----------------
+            _id         | Yes   | string | Document ID   
+            from        | Yes   | string | admin ID    
+            fileName    | Yes   | string | Document name    
+            filePath    | Yes   | string | Document path    
+            fileSize    | Yes   | string | Document size   
+            mimetype    | Yes   | string | Document perform    
+            imgPath     | Yes   | string | Background map path   
+            meta        | Yes   | Object | Date Objects    
+            ___
+            * meta
+
+                Parameter Name | need | type   | Description
+                ------------|------|---------|----------------
+                updateAt    | Yes   | string | Document Update time   
+                createAt    | Yes   | string | Document creat time
+
+
+    1. 成功返回的数据
+    ```json
+    {
+        "status": true,
+        "allFile": [
+            {
+                "_id": "5a3bb3400309f67e93e99cbd",
+                "from": "5a27e247970a925f4e5aa844",
+                "fileName": "1513861952608Screenshot_2017-12-02-12-09-33-607_com.valvesoftw.png",
+                "filePath": "/Users/zhubotai/Documents/class/design_p/大项目/E-learning/server/前4个功能/uploads/1513861952608Screenshot_2017-12-02-12-09-33-607_com.valvesoftw.png",
+                "fileSize": "219.25KB",
+                "mimetype": "",
+                "imgPath": "",
+                "__v": 0,
+                "meta": {
+                    "updateAt": "2017-12-21T13:12:32.609Z",
+                    "createAt": "2017-12-21T13:12:32.609Z"
+                }
+            },
+            {
+                "_id": "5a3c6ed6f315bd83af1f6566",
+                "from": "5a27e247970a925f4e5aa844",
+                "fileName": "151390997410320d269c79aa0776bdab445b9fac7e7f5.jpeg",
+                "filePath": "/Users/zhubotai/Documents/class/design_p/大项目/E-learning/server/前4个功能/uploads/151390997410320d269c79aa0776bdab445b9fac7e7f5.jpeg",
+                "fileSize": "178.21KB",
+                "__v": 0,
+                "meta": {
+                    "updateAt": "2017-12-22T02:32:54.112Z",
+                    "createAt": "2017-12-22T02:32:54.112Z"
+                }
+            },
+            {
+                "_id": "5a3c6ed6f315bd83af1f6567",
+                "from": "5a27e247970a925f4e5aa844",
+                "fileName": "1513909974105TIM截图20171208141619.png",
+                "filePath": "/Users/zhubotai/Documents/class/design_p/大项目/E-learning/server/前4个功能/uploads/1513909974105TIM截图20171208141619.png",
+                "fileSize": "13.30KB",
+                "__v": 0,
+                "meta": {
+                    "updateAt": "2017-12-22T02:32:54.118Z",
+                    "createAt": "2017-12-22T02:32:54.118Z"
+                }
+            }
+        ]
+    }
+    ```
+
+    2. 失败返回的数据
+    ```json
+    {
+        "status": false,
+        "msg": "Document数据查询失败"
+    }
+    {
+        "status": false,
+        "msg": "Document无数据"
+    }
+    ```
+
