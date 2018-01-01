@@ -19,11 +19,11 @@ checkPassword.prototype = {
     }
 }
 
-const hashPasswoord = function() {
+const hashPassword = function() {
     this.intro = 'this is hash'
 }
 
-hashPasswoord.prototype = {
+hashPassword.prototype = {
     hashPwd: (password) => {
         return new Promise((resolve, reject) => {
             // 生成 salt
@@ -50,7 +50,7 @@ const passwordFactory = function(action) {
         case 'checkPwd':
             return new checkPassword();
         case 'hashPwd':
-            return new hashPasswoord();
+            return new hashPassword();
     }
 }
 

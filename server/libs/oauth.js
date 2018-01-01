@@ -1,3 +1,7 @@
+const SALT_WORK_FACTOR = 10
+const ADMIN_ROLE = 30
+const TEACHER_ROLE = 20
+
 // 原型模式
 const oAuth = {
     oAuthAdmin: function(req, res, next) {
@@ -48,7 +52,7 @@ const oAuth = {
 
 };
 
-// Use Object.create to instantiate a new car
+// Use Object.create to instantiate
 const exportsOAuth = Object.create(oAuth);
 
 module.exports = exportsOAuth

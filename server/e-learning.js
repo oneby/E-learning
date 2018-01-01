@@ -63,7 +63,7 @@ app.use(session({
 // app.use('/static', express.static('./picture'));
 app.use(express.static('./uploads'));
 app.use('/picture', express.static('./picture'));
-app.use(express.static('./views/dist'));
+app.use(express.static('./dist/'));
 
 // app.use('/', index);
 app.use('/user', user_api)

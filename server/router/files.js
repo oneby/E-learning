@@ -48,57 +48,7 @@ router.get('/download/:fileid', fileAction.downloadFile);
 router.get('/alldata', fileAction.findAllFile)
 
 // 查找单个文件
-router.get('/detail/:fileid', (req, res) => {
-    const { fileid } = req.params
-
-    // 查找数据库中单条文件数据
-    FileModel.findOne({ _id: fileid }, (err, fileResult) => {
-        if (err) {
-            console.log(err)
-            res.send({
-                status: false,
-                msg: '文件查询失败'
-            })
-        }
-        if (fileResult === null) {
-            res.send({
-                status: false,
-                msg: '文件无数据'
-            })
-        } else {
-            // 根据文件中上传用户 ID 查找用户信息
-            UserDataModel.findOne({ _id: fileResult.from }, (err, userResult) => {
-                if (err) {
-                    console.log(err)
-                    res.send({
-                        status: false,
-                        msg: '用户查询失败'
-                    })
-                }
-                if (userResult === null) {
-                    res.send({
-                        status: false,
-                        msg: '用户无数据'
-                    })
-                } else {
-                    /**
-                     * fromName   上传用户名字
-                     * fileName   文件名字
-                     * fileSize   文件大小
-                     * date       文件上传日期
-                     */
-                    res.send({
-                        status: true,
-                        fromName: userResult.name,
-                        fileName: fileResult.fileName,
-                        fileSize: fileResult.fileSize,
-                        date: fileResult.meta.updateAt
-                    })
-                }
-            })
-        }
-    })
-})
+router.get('/detail/:fileid', fileAction.findOneFile)
 
 
 module.exports = router;
