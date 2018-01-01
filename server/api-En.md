@@ -177,3 +177,109 @@ Interface documentation
         "msg": "无用户数据"
     }
     ```
+
+
+5.  Enter the user interface
+	--------
+
+	- **Interface address http://ip:port/user/typein**
+
+    - **request method:POST**
+
+    - **request parameter**
+
+        Parameter Name | need | type   | Description
+        ------------|------|--------|--------------
+        typeinName      | Yes   | string | nickname
+        typeinAccount   | Yes   | string | The user student id
+        typeinPassword  | Yes   | string | User Password
+        typeinRole      | Yes   | string | user permission 
+        typeinSex       | Yes   | string | User Sex
+        
+
+    - ** response parameter**
+
+        Parameter Name | need | type   | Description
+        ------------|------|---------|----------------
+        status      | Yes   | boolean | Judgment state
+        name        | Yes   | string  | nickname
+        accountnum  | Yes   | string  | The user student id
+        role        | Yes   | string  | user permission 
+        sex         | Yes   | string  | User Sex     
+        msg         | Yes   | string  | Return message
+
+
+    1. 成功返回的数据
+    ```json
+    {
+        "status": true,
+        "name": "admin",
+        "accountnum": "12345",
+        "role": "100",
+        "sex": "man"
+        "msg": "录入成功"
+        
+    }
+    ```
+
+    2. 失败返回的数据
+    ```json
+    {
+        "status": false,
+        "msg": "用户已存在"
+    }
+    {
+        "status": false,
+        "msg": "数据库保存失败"
+    }
+    {
+        "status": false,
+        "msg": "权限不足"
+    }
+    {
+        "status": false,
+        "msg": "请登录！"
+    }
+    ```
+
+6.  The user changes his password
+	--------
+
+	- **Interface address http://ip:port/user/update/pwd**
+
+    - **request method:POST**
+
+    - **request parameter**
+
+        Parameter Name | need | type   | Description
+        ------------|------|--------|--------------
+        userId         | Yes   | string | The user student id
+        userLastPass   | Yes   | string | User's old password
+        userNewPass    | Yes   | string | User's new password
+
+        
+
+    - ** response parameter**
+
+        Parameter Name | need | type   | Description
+        ------------|------|---------|----------------
+        status      | Yes   | boolean | Judgment state  
+        msg         | Yes   | string  | Return message
+
+
+    1. 成功返回的数据
+    ```json
+    {
+        status: true,
+        msg: '密码更新成功'
+    }
+    ```
+
+    2. 失败返回的数据
+    ```json
+    {
+      
+    }
+    ```
+
+
