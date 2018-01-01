@@ -544,3 +544,123 @@ Interface documentation
     }
     ```
 
+
+11.  Find a single video
+	--------
+
+	- **Interface address http://ip:port/file/detail/:fileid**
+
+    - **request method: GET**
+
+    - **request parameter**
+
+        Parameter Name | need | type   | Description
+        ----------|------|--------|--------------
+        fileid    | Yes   | string | Document ID
+        
+        
+
+    - ** response parameter**
+
+        Parameter Name | need | type   | Description
+        ------------|------|---------|----------------
+        status      | Yes   | boolean | Status information
+        fromName    | Yes   | string  | Upload user name
+        fileName    | Yes   | string  | Document name
+        fileSize    | Yes   | string  | Document size
+        filePath    | Yes   | string  | Document address
+        imgPath     | Yes   | string  | Background map address
+        date        | Yes   | string  | Document Upload Day
+        
+
+
+    1. 成功返回的数据
+    ```json
+    {
+        "status": true,
+        "fromName": "admin",
+        "fileName": "1513861952608Screenshot_2017-12-02-12-09-33-607_com.valvesoftw.png",
+        "fileSize": "219.25KB",
+        "filePath": "/xxx/xxx/xxx/xxx",        
+        "imgPath": "/xxx/xxx/xxx/xxx",        
+        "date": "2017-12-21T13:12:32.609Z"
+    }
+    ```
+
+    2. 失败返回的数据
+    ```json
+    {
+        "status": false,
+        "msg": "Document查询失败"
+    }
+    {
+        "status": false,
+        "msg": "Document无数据"
+    }
+    {
+        "status": false,
+        "msg": "用户查询失败"
+    }
+    {
+        "status": false,
+        "msg": "用户无数据"
+    }
+    ```
+12. Resaerch Video
+	--------
+
+	- **Interface address http://ip:port/file/search?courseName=**
+
+    - **request method: GET**
+
+    - **request parameter**
+
+        Parameter Name | need | type   | Description
+        ----------|------|--------|--------------
+        无
+        
+
+    - ** response parameter**
+
+        Parameter Name | need | type   | Description
+        ------------|------|---------|----------------
+        status      | Yes   | boolean | Status information
+        searchRes   | Yes   | Object  | Review the information
+        msg         | Yes   | string  | information
+        ___
+        * searchRes
+
+            Parameter Name | need | type   | Description
+            ------------|------|---------|----------------
+            __id        | Yes   | string | class id               
+            from        | Yes   | string | uploader id   
+            fileName    | Yes   | string | Video name
+            filePath    | Yes   | string | Video path
+            fileSize    | Yes   | string | Video size
+            mimetype    | Yes   | string | Video type
+            imgPath     | Yes   | string | Background image path
+            coursePrice | Yes   | string | Price free
+            meta        | Yes   | Object | creat time
+            ___
+            * meta
+
+                Parameter Name | need | type   | Description
+                ------------|------|---------|----------------
+                updateAt    | Yes   | string | update time  
+                createAt    | Yes   | string | create time
+
+
+    1. 成功返回的数据
+    ```json
+    {
+        
+    }
+    ```
+
+    2. 失败返回的数据
+    ```json
+    {
+
+    }
+    ```
+
