@@ -1,6 +1,6 @@
 var ranaly = require('node_ranaly');
 var now = require('moment')();
-
+//单例 原型 数据访问对象 装饰者 模块
 var Logging = function(host,port,DataArr){
     this.host = host;
     this.port = port;

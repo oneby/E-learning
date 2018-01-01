@@ -7,6 +7,7 @@ const userAction = require('./../middleware/user')
 
 const SALT_WORK_FACTOR = 10
 
+// 拦截过滤器模式
 
 // 用户登录
 router.post('/login', userAction.login);

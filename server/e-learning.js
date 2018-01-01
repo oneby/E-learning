@@ -14,6 +14,7 @@ const logging_api = require('./router/logging')
 const user_api = require('./router/users')
 const file_api = require('./router/files')
 const comment_api = require('./router/comments')
+const job_api = require('./router/job')
 
 const app = express()
 
@@ -70,7 +71,7 @@ app.use('/user', user_api)
 app.use('/file', file_api)
 app.use('/comment', comment_api)
 app.use('/logging',logging_api)
-
+app.use('/job',job_api)
 // 路由设置
 const port = normalizePort(process.env.PORT || '3456');
 app.set('port', port);
