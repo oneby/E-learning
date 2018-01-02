@@ -78,10 +78,10 @@ function uploadFile(req, res) {
                 let _FileData = new FileModel({
                     from: req.session.userInfo.userId,
                     fileName: newFileName,
-                    filePath: newFilePath,
+                    filePath: '/' + newFileName,
                     fileSize: (uploadFile.size / 1024).toFixed(2) + 'KB',
                     mimetype: uploadFile.mimetype,
-                    imgPath: newImgPath
+                    imgPath: '/' + newImgName
                 });
 
                 // 保存数据库
@@ -260,6 +260,7 @@ function findOneFile(req, res) {
                         msg: '用户无数据'
                     })
                 } else {
+                    console.log(fileResult.filePath);
                     /**
                      * fromName   上传用户名字
                      * fileName   文件名字
